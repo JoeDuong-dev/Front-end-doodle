@@ -1,7 +1,7 @@
 //Add the board
 const blockSize = 25;
-const rows = 20;
-const cols = 20;
+let rows = 24;
+let cols = 24;
 let board;
 let context;
 
@@ -14,8 +14,10 @@ let foodX;
 let foodY;
 
 //snake speed
-const velocityX = 0;
-const velocityY = 0;
+let velocityX = 0;
+let velocityY = 0;
+
+let snakeBody = [];
 
 window.onload = () => {
   board = document.getElementById("board");
@@ -25,7 +27,7 @@ window.onload = () => {
 
   placeFood();
   document.addEventListener("keyup", changeDirection);
-  setInterval(update, 1000 / 10); //Runs the update funntion 10 times per second.
+  setInterval(update, 1200 / 10); //Runs the update function 8 times per second.
 };
 
 //Update the canvas
@@ -33,13 +35,30 @@ const update = () => {
   context.fillStyle = "black"; //Board color
   context.fillRect(0, 0, board.width, board.height);
 
+  context.fillStyle = "red"; //food color
+  context.fillRect(foodX, foodY, blockSize, blockSize);
+
+  //When the snake eats the food, place a new food
+  if (snakeX == foodX && snakeY == foodY) {
+    snakeBody.push([foodX, foodY]);
+    placeFood();
+  }
+
+  for (let i = snakeBody.length - 1; i > 0; i--) {
+    snakeBody[i] = snakeBody[i - 1];
+  }
+
+  if (snakeBody.length) {
+    snakeBody[0] = [snakeX, snakeY];
+  }
+
   context.fillStyle = "lime"; //Snake color
   snakeX += velocityX * blockSize;
   snakeY += velocityY * blockSize;
   context.fillRect(snakeX, snakeY, blockSize, blockSize);
-
-  context.fillStyle = "red"; //food color
-  context.fillRect(foodX, foodY, blockSize, blockSize);
+  for (let i = 0; i < snakeBody.length; i++) {
+    context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
+  }
 };
 
 //Place food randomly
@@ -51,16 +70,16 @@ const placeFood = () => {
 
 //Let the snake move
 const changeDirection = (e) => {
-  if (e.code == "ArrowUp") {
+  if (e.code == "ArrowUp" && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
-  } else if (e.code == "ArrowDown") {
+  } else if (e.code == "ArrowDown" && velocityY != -1) {
     velocityX = 0;
     velocityY = 1;
-  } else if (e.code == "ArrowLeft") {
+  } else if (e.code == "ArrowLeft" && velocityX != 1) {
     velocityX = -1;
     velocityY = 0;
-  } else if (e.code == "ArrowRight") {
+  } else if (e.code == "ArrowRight" && velocityX != -1) {
     velocityX = 1;
     velocityY = 0;
   }
