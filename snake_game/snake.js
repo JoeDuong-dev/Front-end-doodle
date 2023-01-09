@@ -1,3 +1,13 @@
+/*
+  Author: Joe Duong
+  This is the js file for the classic snake game.
+*/
+
+//TODO: Makes the initial snake longer.
+//TODO: Adds game over logic.
+//TODO: Adds score.
+//TODO: Adds some music?
+
 //Add the board
 const blockSize = 25;
 let rows = 24;
@@ -5,15 +15,15 @@ let cols = 24;
 let board;
 let context;
 
-//snake head
+//Snake head
 let snakeX = blockSize * 5;
 let snakeY = blockSize * 5;
 
-//food
+//Food
 let foodX;
 let foodY;
 
-//snake speed
+//Snake speed
 let velocityX = 0;
 let velocityY = 0;
 
@@ -27,7 +37,7 @@ window.onload = () => {
 
   placeFood();
   document.addEventListener("keyup", changeDirection);
-  setInterval(update, 1200 / 10); //Runs the update function 8 times per second.
+  setInterval(update, 1200 / 10); //Runs the update function 12 times per second. Longer means slower speed.
 };
 
 //Update the canvas
@@ -35,7 +45,7 @@ const update = () => {
   context.fillStyle = "black"; //Board color
   context.fillRect(0, 0, board.width, board.height);
 
-  context.fillStyle = "red"; //food color
+  context.fillStyle = "red"; //Food color
   context.fillRect(foodX, foodY, blockSize, blockSize);
 
   //When the snake eats the food, place a new food
@@ -56,6 +66,8 @@ const update = () => {
   snakeX += velocityX * blockSize;
   snakeY += velocityY * blockSize;
   context.fillRect(snakeX, snakeY, blockSize, blockSize);
+
+  //Let the snake grow longer whenever it ate food
   for (let i = 0; i < snakeBody.length; i++) {
     context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
   }
