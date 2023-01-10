@@ -115,8 +115,8 @@
       <p>
         <label for="username"> Enter a Username:</label>
         <input
-          id="username"
           type="text"
+          id="username"
           placeholder="Username"
           name="username"
         />
@@ -124,8 +124,8 @@
       <p>
         <label for="password"> Enter a Password:</label>
         <input
-          id="password"
           type="password"
+          id="password"
           placeholder="Password"
           name="password"
         />
@@ -133,15 +133,22 @@
       <p>
         <label for="colorPicker"> Pick a color:</label>
         <input
-          id="colorPicker"
           type="color"
+          id="colorPicker"
           placeholder="#19D71C"
           name="color"
         />
       </p>
       <p>
         <label for="numberPicker"> Pick a number:</label>
-        <input id="numberPicker" type="number" placeholder="0" name="num" />
+        <input
+          id="numberPicker"
+          type="number"
+          placeholder="0"
+          name="num"
+          min="-10"
+          max="10"
+        />
       </p>
       <button type="button">Submit</button>
     </form>
@@ -149,8 +156,8 @@
     <h2>Search the Internet!</h2>
     <form action="https://www.reddit.com/search">
       <input
-        id="Reddit_search"
         type="text"
+        id="Reddit_search"
         placeholder="Search for..."
         name="q"
       />
@@ -159,8 +166,8 @@
     <br />
     <form action="https://www.google.com/search">
       <input
-        id="Google_search"
         type="text"
+        id="Google_search"
         placeholder="Search for..."
         name="q"
       />
@@ -169,12 +176,78 @@
     <br />
     <form action="https://www.youtube.com/results">
       <input
-        id="Youtube_search"
         type="text"
+        id="Youtube_search"
         placeholder="Search for..."
         name="search_query"
       />
       <button>Go on YouTube!</button>
+    </form>
+
+    <h2>Checkboxes and Radio Buttons</h2>
+    <form action="/gamingSurvey">
+      <p>What gaming systems do you have?</p>
+      <p>
+        <input type="checkbox" id="mobile" name="mobile" checked />
+        <label for="mobile"> Mobile</label>
+
+        <input type="checkbox" id="pc" name="pc" />
+        <label for="pc"> PC</label>
+
+        <input type="checkbox" id="console" name="console" />
+        <label for="console"> Console</label>
+      </p>
+
+      <p>What is your favorite genre of gaming?</p>
+      <p>
+        <input type="radio" id="RPG" name="RPG" value="RPG" checked />
+        <label for="RPG">RPG</label>
+
+        <input type="radio" id="action" name="action" value="action" />
+        <label for="action">Action</label>
+
+        <input type="radio" id="strategy" name="strategy" value="strategy" />
+        <label for="strategy">Strategy</label>
+      </p>
+
+      <p>How many hours in a day do you spend on video games on average?</p>
+      <p>
+        <select name="hoursGaming" id="hoursGaming">
+          <option value="" selected>-- Please choose an option --</option>
+          <option value="2">0 - 2 hours</option>
+          <option value="4">2 - 4 hours</option>
+          <option value="8">4 - 8 hours</option>
+          <option value="8_or_more">More than 8 hours</option>
+        </select>
+      </p>
+
+      <p>What is your brightness settings for video games?</p>
+      <p>
+        <label for="brightness">Brightness level</label>
+        <input
+          type="range"
+          id="brightness"
+          name="brightness"
+          min="0"
+          max="100"
+          step="2"
+          value="50"
+        />
+      </p>
+
+      <p>
+        <label for="favMoment">Your favorite moment in video game:</label><br />
+        <textarea
+          id="favMoment"
+          rows="10"
+          cols="40"
+          name="favMoment"
+          id="favMoment"
+          placeholder="Type here..."
+        ></textarea>
+      </p>
+
+      <button>Submit</button>
     </form>
 
     <h2>Play some games?</h2>
